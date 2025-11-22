@@ -28,7 +28,7 @@ public class PacientesActivity extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
         PacienteApi api = ApiClient.getClient().create(PacienteApi.class);
-        api.getPacientes().enqueue(new Callback<List<Paciente>>() {
+        api.getPacientes().enqueue(new Callback<List<Paciente>> () {
             @Override
             public void onResponse(Call<List<Paciente>> call, Response<List<Paciente>> response) {
                 if (response.isSuccessful() && response.body()!=null) {

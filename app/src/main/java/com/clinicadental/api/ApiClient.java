@@ -1,11 +1,8 @@
 package com.clinicadental.api;
 
 import android.util.Log;
-
 import com.clinicadental.utils.Constants;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

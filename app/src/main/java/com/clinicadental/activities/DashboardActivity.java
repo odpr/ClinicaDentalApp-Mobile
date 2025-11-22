@@ -2,13 +2,10 @@ package com.clinicadental.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.clinicadental.R;
 import com.clinicadental.api.ApiClient;
 import com.clinicadental.utils.SessionManager;
-
 import com.google.android.material.button.MaterialButton;
 
 public class DashboardActivity extends AppCompatActivity {
