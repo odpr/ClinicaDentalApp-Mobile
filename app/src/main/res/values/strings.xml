@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ClinicaDental</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="patients">Pacientes</string>
+    <string name="sign_in">Iniciar</string>
+</resources>
