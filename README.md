@@ -12,7 +12,7 @@ App móvil para la **Clínica Dental Dra. Yocaina Pérez**. Conecta con la API d
 2. Abrir en Android Studio.
 3. Editar `Constants.java` y poner la URL del servidor .NET:
    ```java
-   public static final String BASE_URL = "http://10.0.2.2:5000/"; // o http://IP_LOCAL:PUERTO/
+   public static final String BASE_URL = "http://10.0.2.2:5099/"; // o http://IP_LOCAL:PUERTO/
    ```
    - Para emulador Android y backend en la misma máquina, usa `10.0.2.2`.
 4. Sincronizar Gradle y ejecutar en emulador/dispositivo.
@@ -30,7 +30,7 @@ app/src/main/java/com/clinicadental
  └─ utils (Constants, SessionManager)
 ```
 
-## Próximos pasos
+## Próximos pasos (Aun no implementados)
 - Implementar autenticación real vía API.
 - Crear Activities para Citas, Tratamientos, Pagos.
 - Añadir Room para modo offline y sincronización.
