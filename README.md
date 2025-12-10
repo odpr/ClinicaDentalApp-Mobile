@@ -135,7 +135,7 @@ public static final String BASE_URL = "http://10.0.2.2:5099/api/";
 
 2. **DashboardActivity**
 
-   * Acceso a módulos (Pacientes, Citas, etc.)
+   * Acceso a módulo (Pacientes)
 
 3. **PacientesActivity**
 
@@ -148,6 +148,7 @@ public static final String BASE_URL = "http://10.0.2.2:5099/api/";
 ## Backend – Endpoint Especial para Android
 
 ```csharp
+// LISTA Pacientes
 [HttpGet("list")]
 public async Task<ActionResult<IEnumerable<PacienteApiDto>>> GetPacientesApi()
 {
@@ -165,6 +166,97 @@ public async Task<ActionResult<IEnumerable<PacienteApiDto>>> GetPacientesApi()
 
     return Ok(pacientes);
 }
+
+// DETALLE
+[HttpGet("{id:int}")]
+[AllowAnonymous] // o [Authorize(AuthenticationSchemes = "Bearer")] si lo quieres protegido
+public async Task<ActionResult<PacienteApiDto>> GetPaciente(int id)
+{
+    var p = await _context.Pacientes.FindAsync(id);
+    if (p == null) return NotFound();
+
+    var dto = new PacienteApiDto
+    {
+        Id = p.Id,
+        NombreCompleto = p.Nombre,
+        Telefono = p.Telefono ?? "",
+        Email = p.Email ?? "",
+        FechaNacimiento = p.FechaNacimiento.HasValue
+            ? p.FechaNacimiento.Value.ToString("yyyy-MM-dd")
+            : "",
+        Direccion = p.Direccion ?? ""
+    };
+
+    return Ok(dto);
+}
+
+// CREAR
+[HttpPost]
+[AllowAnonymous] // o Authorize si ya usas JWT en la app
+public async Task<ActionResult<PacienteApiDto>> CreatePaciente([FromBody] PacienteCreateUpdateDto model)
+{
+    if (!ModelState.IsValid) return BadRequest(ModelState);
+
+    var paciente = new Paciente
+    {
+        Nombre = model.NombreCompleto,
+        Telefono = model.Telefono,
+        Email = model.Email,
+        Direccion = model.Direccion,
+        FechaNacimiento = string.IsNullOrWhiteSpace(model.FechaNacimiento)
+            ? null
+            : DateTime.Parse(model.FechaNacimiento)
+    };
+
+    _context.Pacientes.Add(paciente);
+    await _context.SaveChangesAsync();
+
+    var dto = new PacienteApiDto
+    {
+        Id = paciente.Id,
+        NombreCompleto = paciente.Nombre,
+        Telefono = paciente.Telefono ?? "",
+        Email = paciente.Email ?? "",
+        FechaNacimiento = paciente.FechaNacimiento?.ToString("yyyy-MM-dd") ?? "",
+        Direccion = paciente.Direccion ?? ""
+    };
+
+    return CreatedAtAction(nameof(GetPaciente), new { id = paciente.Id }, dto);
+}
+
+// EDITAR
+[HttpPut("{id:int}")]
+[AllowAnonymous]
+public async Task<IActionResult> UpdatePaciente(int id, [FromBody] PacienteCreateUpdateDto model)
+{
+    var paciente = await _context.Pacientes.FindAsync(id);
+    if (paciente == null) return NotFound();
+
+    paciente.Nombre = model.NombreCompleto;
+    paciente.Telefono = model.Telefono;
+    paciente.Email = model.Email;
+    paciente.Direccion = model.Direccion;
+    paciente.FechaNacimiento = string.IsNullOrWhiteSpace(model.FechaNacimiento)
+        ? null
+        : DateTime.Parse(model.FechaNacimiento);
+
+    await _context.SaveChangesAsync();
+    return NoContent();
+}
+
+// ELIMINAR
+[HttpDelete("{id:int}")]
+[AllowAnonymous]
+public async Task<IActionResult> DeletePaciente(int id)
+{
+    var paciente = await _context.Pacientes.FindAsync(id);
+    if (paciente == null) return NotFound();
+
+    _context.Pacientes.Remove(paciente);
+    await _context.SaveChangesAsync();
+    return NoContent();
+}
+
 ```
 
 ---
@@ -197,7 +289,6 @@ ClinicaDentalApp-Mobile/
 
 ### Próximas mejoras en la app:
 
-* Pantalla de detalles del paciente
 * CRUD móvil de pacientes
 * Gestión de citas desde Android
 * Notificaciones push (FCM)
