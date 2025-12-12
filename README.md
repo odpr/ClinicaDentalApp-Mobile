@@ -360,10 +360,39 @@ Motivo: Identificar de qué pantalla regresó el usuario.
 
 ---
 
-* Gestión de citas desde Android
-* Notificaciones push (FCM)
-* Implementación de roles (doctor / admin)
-* Sincronización offline
+### Sección: CRUD de Pacientes – Actualización v1.0
+
+Se implementó el flujo completo de CRUD de pacientes en la aplicación móvil ClínicaDental (Android).
+
+Cambios incluidos:
+
+
+### PacientesActivity ahora soporta:
+
+Navegación al detalle de un paciente mediante clic en la lista.
+
+Creación de nuevos pacientes mediante botón flotante (fabAgregarPaciente).
+
+Recarga automática de datos al regresar desde crear/editar/eliminar.
+
+Manejo de estados vacío/cargando.
+
+
+### Se agregaron Activities nuevas:
+
+PacienteDetalleActivity → Ver, editar y eliminar paciente.
+
+PacienteFormActivity → Crear y editar pacientes.
+
+
+### Se extendió PacienteAdapter para soporte de callbacks.
+### Cambios requeridos en layouts:
+
+activity_pacientes.xml → agregar FAB + mantener ids existentes.
+
+Nuevos layouts para detalle y formulario.
+
+Este módulo permite la administración completa de pacientes desde la app móvil de forma integrada con la API REST del sistema ClínicaDental.
 
 
 ---
