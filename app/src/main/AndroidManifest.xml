@@ -27,5 +27,13 @@
         <activity
             android:name=".activities.PacientesActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.PacienteDetalleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PacienteFormActivity"
+            android:exported="false" />
+
+
     </application>
 </manifest>
