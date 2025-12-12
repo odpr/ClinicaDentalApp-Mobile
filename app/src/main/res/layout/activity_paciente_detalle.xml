@@ -81,10 +81,10 @@
                     android:layout_marginTop="4dp" />
 
                 <TextView
-                    android:id="@+id/tvCedulaDetalle"
+                    android:id="@+id/tvFechaNacDetalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cédula"
+                    android:text="Fecha de Nacimiento"
                     android:layout_marginTop="4dp" />
 
                 <TextView
@@ -117,6 +117,7 @@
                         android:layout_marginStart="16dp"
                         android:backgroundTint="@android:color/holo_red_dark"
                         android:textColor="@android:color/white" />
+
                 </LinearLayout>
 
             </LinearLayout>
