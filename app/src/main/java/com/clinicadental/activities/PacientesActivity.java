@@ -20,6 +20,7 @@ import com.clinicadental.api.ApiClient;
 import com.clinicadental.api.PacienteApi;
 import com.clinicadental.models.Paciente;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
 
@@ -43,13 +44,18 @@ public class PacientesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pacientes);   // <-- tu layout actual
+        setContentView(R.layout.activity_pacientes);
+
+        // Inicializar Toolbar
+        MaterialToolbar toolbar = findViewById(R.id.toolbarPacientes);
+        setSupportActionBar(toolbar);
+
 
         recyclerPacientes = findViewById(R.id.recyclerPacientes);
         progressBar = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
 
-        // ⚠️ Asegúrate de que en tu XML exista un FAB con este id (lo creamos luego)
+
         fabAgregarPaciente = findViewById(R.id.fabAgregarPaciente);
 
         recyclerPacientes.setLayoutManager(new LinearLayoutManager(this));
