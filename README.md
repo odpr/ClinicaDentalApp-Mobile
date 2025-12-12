@@ -289,12 +289,82 @@ ClinicaDentalApp-Mobile/
 
 ### Próximas mejoras en la app:
 
-* CRUD móvil de pacientes
+
+##CRUD Interface de pacientes
+
+* Diseño mejorado con transiciones
+---
+## 1. Modificación de PacientesActivity.java
+Objetivo:
+
+Agregar navegación al CRUD completo:
+
+Abrir detalle de un paciente
+
+Crear un nuevo paciente (pantalla de formulario)
+
+Refrescar la lista después de crear/editar/eliminar
+
+Cambios principales:
+**1.1. Se agregó un FloatingActionButton
+
+Archivo: PacientesActivity.java
+Nuevo ID esperado: fabAgregarPaciente
+
+Uso:
+
+fabAgregarPaciente = findViewById(R.id.fabAgregarPaciente);
+fabAgregarPaciente.setOnClickListener(v -> {
+    Intent intent = new Intent(PacientesActivity.this, PacienteFormActivity.class);
+    startActivityForResult(intent, REQ_NUEVO_PACIENTE);
+});
+
+Motivo: Permitir crear un nuevo paciente desde la lista.
+
+---
+
+**1.2. Se agregó navegación al hacer clic en un paciente
+
+adapter = new PacienteAdapter(lista, paciente -> {
+    Intent intent = new Intent(PacientesActivity.this, PacienteDetalleActivity.class);
+    intent.putExtra("pacienteId", paciente.getId());
+    startActivityForResult(intent, REQ_DETALLE_PACIENTE);
+});
+
+Motivo: Abrir pantalla de detalle con opciones de editar y eliminar.
+
+---
+
+**1.3. Se agregó onActivityResult para refrescar la lista
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    if ((requestCode == REQ_NUEVO_PACIENTE || requestCode == REQ_DETALLE_PACIENTE)
+            && resultCode == RESULT_OK) {
+        cargarPacientes();
+    }
+}
+
+Motivo: Cada vez que se crea / edita / elimina un paciente, la lista debe actualizarse automáticamente.
+
+---
+
+**1.4. Se agregaron códigos de request
+
+private static final int REQ_NUEVO_PACIENTE = 1001;
+private static final int REQ_DETALLE_PACIENTE = 1002;
+
+Motivo: Identificar de qué pantalla regresó el usuario.
+
+---
+
 * Gestión de citas desde Android
 * Notificaciones push (FCM)
 * Implementación de roles (doctor / admin)
 * Sincronización offline
-* Diseño mejorado con transiciones
+
 
 ---
 
