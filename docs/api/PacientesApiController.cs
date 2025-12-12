@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("api/[controller]")]
-public class PacientesController : ControllerBase
+[Route("api/Pacientes")]
+public class PacientesApiController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
-    public PacientesController(ApplicationDbContext context) => _context = context;
+    public PacientesApiController(ApplicationDbContext context) => _context = context;
 
     [HttpGet]
     public async Task<IActionResult> Get() =>

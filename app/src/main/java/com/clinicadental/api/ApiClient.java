@@ -52,7 +52,7 @@ public class ApiClient {
                             .build();
 
                     retrofit = new Retrofit.Builder()
-                            .baseUrl(Constants.BASE_URL) // DEBE terminar con '/'
+                            .baseUrl(Constants.BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .client(client)
                             .build();

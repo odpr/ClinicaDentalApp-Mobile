@@ -13,5 +13,5 @@ public interface AuthApi {
         public String token, Nombre, Rol;
     }
     @POST("auth/login")
-    Call<LoginResponse> login(@Body LoginRequest req);
+    Call<LoginResponse> login(@Body LoginRequest request);
 }
