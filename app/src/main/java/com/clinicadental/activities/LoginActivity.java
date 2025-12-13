@@ -50,8 +50,12 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<AuthApi.LoginResponse> call, Response<AuthApi.LoginResponse> resp) {
                             if (resp.isSuccessful() && resp.body() != null) {
                                 String token = resp.body().token;
+
+                                SessionManager.saveUserEmail(LoginActivity.this, emailStr);
+
                                 SessionManager.saveToken(LoginActivity.this, token);
                                 ApiClient.setBearerToken(token);
+
                                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                                 finish();
                             } else {
@@ -67,4 +71,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-

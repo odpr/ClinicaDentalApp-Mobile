@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="181dp"
-        android:layout_height="228dp"
+        android:layout_width="280dp"
+        android:layout_height="255dp"
         app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.textfield.TextInputLayout
