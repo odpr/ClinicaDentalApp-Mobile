@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.clinicadental.R;
 import com.clinicadental.api.ApiClient;
 import com.clinicadental.utils.SessionManager;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class DashboardActivity extends AppCompatActivity {
         String saved = SessionManager.getToken(this);
         if (saved != null) {ApiClient.setBearerToken(saved);}
 
-        MaterialButton btnPacientes = findViewById(R.id.btnPacientes);
-        btnPacientes.setOnClickListener(v -> startActivity(new Intent(this, PacientesActivity.class)));
+        MaterialCardView cardPacientes = findViewById(R.id.cardPacientes);
+        cardPacientes.setOnClickListener(v -> startActivity(new Intent(this, PacientesActivity.class)));
     }
 }
