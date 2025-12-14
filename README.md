@@ -285,12 +285,9 @@ ClinicaDentalApp-Mobile/
 
 ---
 
-## Funcionalidades Futuras
+## Funcionalidades
 
-### Próximas mejoras en la app:
-
-
-##CRUD Interface de pacientes
+## CRUD Interface de pacientes
 
 * Diseño mejorado con transiciones
 ---
